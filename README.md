@@ -1,5 +1,5 @@
-# Project Name
-Project description
+# OpCon REST API Java Client library
+Java client library for OpCon REST API
 
 # Disclaimer
 No Support and No Warranty are provided by SMA Technologies for this project and related material. The use of this project's files is on your own risk.
