@@ -8,10 +8,10 @@
 
     <name>SMA OpCon Library Rest Api Client</name>
     <description>SMA OpCon Library Rest Api Client</description>
-    <url>http://github.com/SMATechnologies/opcon-rest-api-client-java</url>
+    <url>https://github.com/SMATechnologies/opcon-rest-api-client-java</url>
     <organization>
         <name>SMA Technologies</name>
-        <url>http://www.smatechnologies.com/</url>
+        <url>https://www.smatechnologies.com</url>
     </organization>
 
     <developers>
@@ -25,7 +25,7 @@
     <scm>
         <connection>scm:git:git://github.com/SMATechnologies/opcon-rest-api-client-java.git</connection>
         <developerConnection>scm:git:git@github.com:SMATechnologies/opcon-rest-api-client-java.git</developerConnection>
-        <url>http://github.com/SMATechnologies/opcon-rest-api-client-java</url>
+        <url>https://github.com/SMATechnologies/opcon-rest-api-client-java/tree/master</url>
     </scm>
 
     <licenses>
