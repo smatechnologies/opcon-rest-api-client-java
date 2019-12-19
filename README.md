@@ -8,9 +8,18 @@ SMA Technologies assumes no liability for damage caused by the usage of any of t
 
 # Prerequisites
 
+Java 11
 
 # Instructions
 
+Available from Central Maven Repository (https://search.maven.org/artifact/com.smatechnologies/opcon-rest-api-client):
+```
+<dependency>
+    <groupId>com.smatechnologies</groupId>
+    <artifactId>opcon-rest-api-client</artifactId>
+    <version>1.0.1</version>
+</dependency>
+```
 
 # License
 Copyright 2019 SMA Technologies
