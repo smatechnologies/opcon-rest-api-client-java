@@ -192,7 +192,7 @@
 
         <slf4j.version>1.7.25</slf4j.version>
 
-        <sma.opcon-commons.version>1.0.0-SNAPSHOT</sma.opcon-commons.version>
+        <sma.opcon-commons.version>1.0.1</sma.opcon-commons.version>
         <jersey.version>2.26</jersey.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
