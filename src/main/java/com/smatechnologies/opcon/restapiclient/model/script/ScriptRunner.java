@@ -17,7 +17,7 @@ public class ScriptRunner {
     public static final String RESOURCE = "scriptRunner";
 
     public static final String PROPERTY_ID = "id";
-    public static final String PROPERTY_DESCRIPTION = "description";
+    public static final String PROPERTY_NAME = "name";
     public static final String PROPERTY_OS_TYPE = "osType";
     public static final String PROPERTY_SCRIPT_TYPE = "scriptType";
     public static final String PROPERTY_CREATED_DATE = "createdDate";
@@ -25,7 +25,7 @@ public class ScriptRunner {
     public static final String PROPERTY_COMMAND = "command";
 
     private Integer id;
-    private String description;
+    private String name;
     private ScriptOs osType;
     private ScriptType scriptType;
     private ZonedDateTime createdDate;
@@ -40,12 +40,12 @@ public class ScriptRunner {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public ScriptOs getOsType() {
@@ -96,7 +96,7 @@ public class ScriptRunner {
             return false;
         ScriptRunner that = (ScriptRunner) o;
         return Objects.equals(id, that.id) &&
-                Objects.equals(description, that.description) &&
+                Objects.equals(name, that.name) &&
                 osType == that.osType &&
                 Objects.equals(scriptType, that.scriptType) &&
                 Objects.equals(createdDate, that.createdDate) &&
@@ -106,7 +106,7 @@ public class ScriptRunner {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, osType, scriptType, createdDate, lastUpdated, command);
+        return Objects.hash(id, name, osType, scriptType, createdDate, lastUpdated, command);
     }
 
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
