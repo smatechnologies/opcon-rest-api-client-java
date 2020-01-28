@@ -1,3 +1,8 @@
+[![Actions Status](https://github.com/SMATechnologies/opcon-rest-api-client-java/workflows/Deploy%20Release/badge.svg)](https://github.com/SMATechnologies/opcon-rest-api-client-java/actions)
+
+[![Actions Status](https://github.com/SMATechnologies/opcon-rest-api-client-java/workflows/Deploy%20Snapshot/badge.svg)](https://github.com/SMATechnologies/opcon-rest-api-client-java/actions)
+
+
 # OpCon REST API Java Client library
 Java client library for OpCon REST API
 

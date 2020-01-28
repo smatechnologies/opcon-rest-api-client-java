@@ -4,7 +4,7 @@
 
     <groupId>com.smatechnologies</groupId>
     <artifactId>opcon-rest-api-client</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 
     <name>SMA OpCon Library Rest Api Client</name>
     <description>SMA OpCon Library Rest Api Client</description>
