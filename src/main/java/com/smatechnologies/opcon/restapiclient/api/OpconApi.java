@@ -27,6 +27,7 @@ import com.smatechnologies.opcon.restapiclient.api.machines.WsMachines;
 import com.smatechnologies.opcon.restapiclient.api.masterjobs.WsMasterJobs;
 import com.smatechnologies.opcon.restapiclient.api.masterschedules.WsMasterSchedules;
 import com.smatechnologies.opcon.restapiclient.api.mastervisionworkspaces.WsMasterVisionWorkspaces;
+import com.smatechnologies.opcon.restapiclient.api.propertyexpressions.WsPropertyExpressions;
 import com.smatechnologies.opcon.restapiclient.api.remoteinstances.WsRemoteInstances;
 import com.smatechnologies.opcon.restapiclient.api.repositories.WsRepositories;
 import com.smatechnologies.opcon.restapiclient.api.resources.WsResources;
@@ -396,6 +397,10 @@ public class OpconApi {
 
     public WsScriptRunners scriptRunners() {
         return new WsScriptRunners(wsFactory);
+    }
+
+    public WsPropertyExpressions propertyExpressions() {
+        return new WsPropertyExpressions(wsFactory);
     }
 
     public interface OpconApiListener {
