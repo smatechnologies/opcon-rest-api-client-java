@@ -3,12 +3,19 @@ package com.smatechnologies.opcon.restapiclient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smatechnologies.opcon.commons.util.UrlUtil;
 import com.smatechnologies.opcon.restapiclient.jackson.DefaultObjectMapperProvider;
+import com.smatechnologies.opcon.restapiclient.model.Version;
 import org.glassfish.jersey.client.ClientProperties;
+import org.glassfish.jersey.client.ClientResponse;
 
+import javax.annotation.Priority;
 import javax.net.ssl.SSLContext;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.ClientRequestContext;
+import javax.ws.rs.client.ClientResponseContext;
+import javax.ws.rs.client.ClientResponseFilter;
 import javax.ws.rs.ext.ContextResolver;
+import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
@@ -19,9 +26,9 @@ import java.util.Objects;
  */
 public class DefaultClientBuilder {
 
+    public final static String VERSION_ATTRIBUTE = "version";
     private static final String ALGORITHM_PROTOCOL = "TLS";
 
-    private Class<? extends ContextResolver<ObjectMapper>> objectMapperProviderClass = DefaultObjectMapperProvider.class;
     private ContextResolver<ObjectMapper> objectMapperProvider;
 
     private boolean trustAllCert;
@@ -35,16 +42,8 @@ public class DefaultClientBuilder {
         return new DefaultClientBuilder();
     }
 
-    public DefaultClientBuilder setObjectMapperProviderClass(Class<? extends ContextResolver<ObjectMapper>> objectMapperProviderClass) {
-        this.objectMapperProviderClass = Objects.requireNonNull(objectMapperProviderClass, "ObjectMapperProviderClass cannot be null");
-        objectMapperProvider = null;
-
-        return this;
-    }
-
     public DefaultClientBuilder setObjectMapperProvider(ContextResolver<ObjectMapper> objectMapperProvider) {
         this.objectMapperProvider = Objects.requireNonNull(objectMapperProvider, "ObjectMapperProvider cannot be null");
-        objectMapperProviderClass = null;
 
         return this;
     }
@@ -85,13 +84,36 @@ public class DefaultClientBuilder {
             client.property(ClientProperties.READ_TIMEOUT, readTimeout);
         }
 
-        if (objectMapperProviderClass != null) {
-            client.register(objectMapperProviderClass);
-        }
-        if (objectMapperProvider != null) {
-            client.register(objectMapperProvider);
+        if (objectMapperProvider == null) {
+            objectMapperProvider = new DefaultObjectMapperProvider();
         }
 
+        client.register(objectMapperProvider);
+        client.register(new VersionContextInjector(objectMapperProvider));
+
         return client;
+    }
+
+    @Priority(5)
+    private static class VersionContextInjector implements ClientResponseFilter {
+
+        private ContextResolver<ObjectMapper> objectMapperProvider;
+
+        public VersionContextInjector(ContextResolver<ObjectMapper> objectMapperProvider) {
+            this.objectMapperProvider = Objects.requireNonNull(objectMapperProvider, "ObjectMapperProvider cannot be null");
+        }
+
+        @Override
+        public void filter(ClientRequestContext requestContext, ClientResponseContext responseContext) throws IOException {
+            if ("/api/version".equals(requestContext.getUri().getPath()) && responseContext instanceof ClientResponse) {
+                ClientResponse clientResponse = (ClientResponse) responseContext;
+                clientResponse.bufferEntity();
+                String version = clientResponse.readEntity(Version.class).getOpConRestApiProductVersion();
+
+                ObjectMapper objectMapper = objectMapperProvider.getContext(requestContext.getEntityClass());
+                objectMapper.setConfig(objectMapper.getDeserializationConfig().withAttribute(VERSION_ATTRIBUTE, version));
+                objectMapper.setConfig(objectMapper.getSerializationConfig().withAttribute(VERSION_ATTRIBUTE, version));
+            }
+        }
     }
 }

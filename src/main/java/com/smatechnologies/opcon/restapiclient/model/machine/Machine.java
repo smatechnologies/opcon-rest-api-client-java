@@ -2,8 +2,12 @@ package com.smatechnologies.opcon.restapiclient.model.machine;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.annotation.JsonTypeResolver;
 import com.smatechnologies.opcon.restapiclient.jackson.NestedStdTypeResolverBuilder;
+import com.smatechnologies.opcon.restapiclient.jackson.deserializer.ListPropertyDeserializer;
+import com.smatechnologies.opcon.restapiclient.jackson.serializer.ListPropertySerializer;
 import com.smatechnologies.opcon.restapiclient.model.MachineGroup;
 import com.smatechnologies.opcon.restapiclient.model.MachineStatus;
 import com.smatechnologies.opcon.restapiclient.model.MachineType;
@@ -512,6 +516,8 @@ public abstract class Machine {
         this.fileTransferIPAddress = fileTransferIPAddress;
     }
 
+    @JsonSerialize(contentUsing = ListPropertySerializer.class)
+    @JsonDeserialize(contentUsing = ListPropertyDeserializer.class)
     public List<List<Property>> getAvailableProperties() {
         return availableProperties;
     }

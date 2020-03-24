@@ -1,6 +1,6 @@
 package com.smatechnologies.opcon.restapiclient.model.machine;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.smatechnologies.opcon.restapiclient.model.MachineType;
 import com.smatechnologies.opcon.restapiclient.model.agentcapability.WindowsAgentCapability;
 
@@ -11,12 +11,12 @@ import java.util.Objects;
 /**
  * @author Pierre PINON
  */
-@JsonIgnoreProperties("type")
 public class WindowsMachine extends Machine {
 
     private List<WindowsAgentCapability> supportedAgentCapability;
 
     @Override
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     public MachineType getType() {
         return MachineType.WINDOWS;
     }
