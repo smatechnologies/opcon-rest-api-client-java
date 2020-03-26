@@ -22,6 +22,8 @@ public class SolutionManagerSettingsCriteria extends AbstractResourcesCriteria<S
     private Integer roleId;
     @ObjMapperField
     private Boolean globalOnly;
+    @ObjMapperField("public")
+    private Boolean isPublic;
 
     public Collection<Integer> getIds() {
         return ids;
@@ -61,6 +63,14 @@ public class SolutionManagerSettingsCriteria extends AbstractResourcesCriteria<S
 
     public void setGlobalOnly(Boolean globalOnly) {
         this.globalOnly = globalOnly;
+    }
+
+    public Boolean getPublic() {
+        return isPublic;
+    }
+
+    public void setPublic(Boolean isPublic) {
+        this.isPublic = isPublic;
     }
 
     /**

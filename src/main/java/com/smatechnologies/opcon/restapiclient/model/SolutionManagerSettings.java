@@ -1,5 +1,7 @@
 package com.smatechnologies.opcon.restapiclient.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 
@@ -15,12 +17,15 @@ public class SolutionManagerSettings {
     public static final String PROPERTY_ROLE_ID = "roleId";
     public static final String PROPERTY_NAME = "name";
     public static final String PROPERTY_VALUE = "value";
+    public static final String PROPERTY_PUBLIC = "public";
 
     private Integer id;
     private Integer userId;
     private Integer roleId;
     private String name;
     private String value;
+    @JsonProperty("public")
+    private Boolean isPublic;
 
     public Integer getId() {
         return id;
@@ -60,6 +65,14 @@ public class SolutionManagerSettings {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public Boolean getPublic() {
+        return isPublic;
+    }
+
+    public void setPublic(Boolean isPublic) {
+        this.isPublic = isPublic;
     }
 
     @Override
