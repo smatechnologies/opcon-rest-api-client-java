@@ -29,12 +29,13 @@ public class MachineGroupsCriteria extends AbstractResourcesCriteria<MachineGrou
     private Boolean includeMachines;
 
     public String getName() {
-		return name;
-	}
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Collection<Integer> getIds() {
         return ids;
     }
