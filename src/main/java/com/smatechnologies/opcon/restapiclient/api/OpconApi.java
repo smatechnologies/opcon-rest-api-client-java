@@ -1,5 +1,6 @@
 package com.smatechnologies.opcon.restapiclient.api;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smatechnologies.opcon.commons.deserializer.DeserializeException;
 import com.smatechnologies.opcon.commons.deserializer.ZonedDateTimeDeserializer;
 import com.smatechnologies.opcon.commons.util.VersionComparator;
@@ -56,6 +57,7 @@ import com.smatechnologies.opcon.restapiclient.api.visioncardstatistics.WsVision
 import com.smatechnologies.opcon.restapiclient.api.visionfrequencies.WsVisionFrequencies;
 import com.smatechnologies.opcon.restapiclient.api.visionjobanomalies.WsVisionJobAnomalies;
 import com.smatechnologies.opcon.restapiclient.api.visionstatistic.WsVisionStatistic;
+import com.smatechnologies.opcon.restapiclient.jackson.DefaultObjectMapperProvider;
 import com.smatechnologies.opcon.restapiclient.model.Token;
 import com.smatechnologies.opcon.restapiclient.model.Version;
 import org.slf4j.Logger;
@@ -63,6 +65,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.ContextResolver;
 import java.time.ZonedDateTime;
 
 
@@ -79,13 +82,20 @@ public class OpconApi {
     private static final String API_SERVER_TIME_HEADER_KEY = "apiServerTime";
     private static final String REQUIRED_VERSION = "18.3.0";
 
+    public static final String VERSION_ATTRIBUTE = "version";
+
     private final WsFactory wsFactory;
 
+    private ContextResolver<ObjectMapper> objectMapperProvider;
     private Token token;
     private Version version;
     private ZonedDateTime lastApiServerTime;
 
     public OpconApi(Client client, final OpconApiProfile profile, OpconApiListener opconApiListener) {
+        this(client, profile, opconApiListener, new DefaultObjectMapperProvider());
+    }
+
+    public OpconApi(Client client, final OpconApiProfile profile, OpconApiListener opconApiListener, ContextResolver<ObjectMapper> objectMapperProvider) {
         Ws.WsListener wsListener = new Ws.WsListener() {
 
             @Override
@@ -138,6 +148,9 @@ public class OpconApi {
 
         };
 
+        this.objectMapperProvider = objectMapperProvider;
+        client.register(objectMapperProvider);
+
         wsFactory = new WsFactory(client, profile, wsListener);
     }
 
@@ -174,6 +187,10 @@ public class OpconApi {
             reset();
             throw new WsVersionException("Incompatible Version Rest API Server (Required=[" + REQUIRED_VERSION + "] Actual=[" + actualVersion + "])", REQUIRED_VERSION, actualVersion);
         }
+
+        ObjectMapper objectMapper = objectMapperProvider.getContext(Version.class);
+        objectMapper.setConfig(objectMapper.getDeserializationConfig().withAttribute(VERSION_ATTRIBUTE, version.getOpConRestApiProductVersion()));
+        objectMapper.setConfig(objectMapper.getSerializationConfig().withAttribute(VERSION_ATTRIBUTE, version.getOpConRestApiProductVersion()));
 
         return token;
     }

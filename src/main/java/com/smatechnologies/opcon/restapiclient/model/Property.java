@@ -15,6 +15,7 @@ public class Property {
 
     public static final String PROPERTY_KEY = "key";
     public static final String PROPERTY_VALUE = "value";
+    public static final String OLD_PROPERTY_NAME = "name";
 
     private String key;
     private String value;

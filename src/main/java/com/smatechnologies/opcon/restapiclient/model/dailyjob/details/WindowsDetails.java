@@ -237,6 +237,9 @@ public class WindowsDetails {
 
         public final static String RESOURCE = "priority";
 
+        public static final String PRIORITY_ID = "id";
+        public static final String PRIORITY_NAME = "name";
+
         private final int id;
         @JsonIgnore
         private final String name;

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.smatechnologies.opcon.commons.util.VersionComparator;
-import com.smatechnologies.opcon.restapiclient.DefaultClientBuilder;
+import com.smatechnologies.opcon.restapiclient.api.OpconApi;
 import com.smatechnologies.opcon.restapiclient.model.Property;
 
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class ListPropertySerializer extends JsonSerializer<List<Property>> {
 
     @Override
     public void serialize(List<Property> value, JsonGenerator gen, SerializerProvider serializers) throws IOException, JsonProcessingException {
-        String apiVersion = (String) serializers.getAttribute(DefaultClientBuilder.VERSION_ATTRIBUTE);
+        String apiVersion = (String) serializers.getAttribute(OpconApi.VERSION_ATTRIBUTE);
 
         if (value == null) {
             return;
@@ -31,11 +31,11 @@ public class ListPropertySerializer extends JsonSerializer<List<Property>> {
         for (Property property : value) {
             gen.writeStartObject();
             if (new VersionComparator().compare(apiVersion, "19.1.0") >= 0) {
-                gen.writeStringField("key", property.getKey());
+                gen.writeStringField(Property.PROPERTY_KEY, property.getKey());
             } else { //Before 19.1.0
-                gen.writeStringField("name", property.getKey());
+                gen.writeStringField(Property.OLD_PROPERTY_NAME, property.getKey());
             }
-            gen.writeStringField("value", property.getValue());
+            gen.writeStringField(Property.PROPERTY_VALUE, property.getValue());
             gen.writeEndObject();
         }
         gen.writeEndArray();

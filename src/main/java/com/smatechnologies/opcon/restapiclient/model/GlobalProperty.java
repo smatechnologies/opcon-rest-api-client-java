@@ -71,7 +71,7 @@ public class GlobalProperty {
             return false;
         if (getValue() != null ? !getValue().equals(that.getValue()) : that.getValue() != null)
             return false;
-  	    if (getEncrypted() != null ? !getEncrypted().equals(that.getEncrypted()) : that.getEncrypted() != null)
+        if (getEncrypted() != null ? !getEncrypted().equals(that.getEncrypted()) : that.getEncrypted() != null)
             return false;
         return getDescription() != null ? getDescription().equals(that.getDescription()) : that.getDescription() == null;
     }
