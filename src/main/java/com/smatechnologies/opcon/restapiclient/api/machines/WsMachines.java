@@ -6,6 +6,7 @@ import com.smatechnologies.opcon.restapiclient.WsFactory;
 import com.smatechnologies.opcon.restapiclient.WsResult;
 import com.smatechnologies.opcon.restapiclient.model.Calendar;
 import com.smatechnologies.opcon.restapiclient.model.MachineStatusCount;
+import com.smatechnologies.opcon.restapiclient.model.PropertyExpression;
 import com.smatechnologies.opcon.restapiclient.model.machine.Machine;
 
 import javax.ws.rs.core.GenericType;
@@ -59,6 +60,11 @@ public class WsMachines {
     public Machine put(Machine machine) throws WsException {
         Objects.requireNonNull(machine, "Machine cannot be null");
         return wsFactory.create(Ws.Type.PUT, machine).path(String.valueOf(machine.getId())).run(Machine.class);
+    }
+
+    public Machine post(Machine machine) throws WsException {
+        Objects.requireNonNull(machine, "Machine cannot be null");
+        return wsFactory.create(Ws.Type.POST, machine).run(Machine.class);
     }
 
 }
