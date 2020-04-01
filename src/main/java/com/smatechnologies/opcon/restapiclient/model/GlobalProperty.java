@@ -8,11 +8,13 @@ public class GlobalProperty {
     public static final String PROPERTY_NAME = "name";
     public static final String PROPERTY_VALUE = "value";
     public static final String PROPERTY_DESCRIPTION = "description";
+    public static final String PROPERTY_ENCRYPTED = "encrypted";
 
     private Integer id;
     private String name;
     private String value;
     private String description;
+    private Boolean encrypted;
 
     public Integer getId() {
         return id;
@@ -46,6 +48,14 @@ public class GlobalProperty {
         this.description = description;
     }
 
+    public Boolean getEncrypted() {
+        return encrypted;
+    }
+
+    public void setEncrypted(Boolean encrypted) {
+        this.encrypted = encrypted;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -61,6 +71,8 @@ public class GlobalProperty {
             return false;
         if (getValue() != null ? !getValue().equals(that.getValue()) : that.getValue() != null)
             return false;
+        if (getEncrypted() != null ? !getEncrypted().equals(that.getEncrypted()) : that.getEncrypted() != null)
+            return false;
         return getDescription() != null ? getDescription().equals(that.getDescription()) : that.getDescription() == null;
     }
 
@@ -69,6 +81,7 @@ public class GlobalProperty {
         int result = getId() != null ? getId().hashCode() : 0;
         result = 31 * result + (getName() != null ? getName().hashCode() : 0);
         result = 31 * result + (getValue() != null ? getValue().hashCode() : 0);
+        result = 31 * result + (getEncrypted() != null ? getEncrypted().hashCode() : 0);
         result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
         return result;
     }

@@ -22,10 +22,59 @@ Available from Central Maven Repository (https://search.maven.org/artifact/com.s
 <dependency>
     <groupId>com.smatechnologies</groupId>
     <artifactId>opcon-rest-api-client</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 
+# Example
+
+```java
+OpconApiProfile profile = new OpconApiProfile("https://localhost:9010/api");
+
+OpconApi opconApi;
+try {
+    Client client = SmClientBuilder.get()
+            .configureDefaultClientBuilder(defaultClientBuilder -> defaultClientBuilder
+                    .setTrustAllCert(true)
+            )
+            .setDebug(true)
+            .setFailOnUnknownProperties(true)
+            .build();
+
+    opconApi = new OpconApi(client, profile, new OpconApi.OpconApiListener() {
+
+        @Override
+        public void onFailed(WsException e) {
+            e.printStackTrace();
+        }
+    });
+
+    opconApi.login("MyOpconUser", "MyOpconPassword");
+
+} catch (KeyManagementException | NoSuchAlgorithmException | WsException e) {
+    e.printStackTrace();
+    return;
+}
+
+try {
+    //Fetch Machines
+    List<Machine> machines = opconApi.machines().get(null);
+
+    //Fetch Roles with machines
+    RolesCriteria rolesCriteria = new RolesCriteria();
+    rolesCriteria.setIncludeMachines(true);
+    List<Role> roles = opconApi.roles().get(rolesCriteria);
+    
+} catch (WsException e) {
+    e.printStackTrace();
+}
+
+try {
+    opconApi.logout();
+} catch (WsException e) {
+    e.printStackTrace();
+}
+```
 # License
 Copyright 2019 SMA Technologies
 

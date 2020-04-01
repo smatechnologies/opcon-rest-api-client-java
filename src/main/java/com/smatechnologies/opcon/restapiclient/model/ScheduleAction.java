@@ -144,7 +144,9 @@ public class ScheduleAction {
         START("start", ScheduleActionUtil::isStartActionAllowed, false),
         CLOSE("close", ScheduleActionUtil::isCloseActionAllowed, false),
         CANCEL_JOBS("cancelJobs", null, true),
+        FORCE_RESTART_JOBS("forceRestartJobs", null, true),
         HOLD_JOBS("holdJobs", null, true),
+        KILL_JOBS("killJobs", null, false),
         MARK_JOBS_FAILED("markJobsFailed", null, true),
         MARK_JOBS_FINISHED_OK("markJobsFinishedOk", null, true),
         MARK_JOBS_UNDER_REVIEW("markJobsUnderReview", null, true),
@@ -152,8 +154,10 @@ public class ScheduleAction {
         RELEASE_JOBS("releaseJobs", null, true),
         RESTART_JOBS("restartJobs", null, true),
         RESTART_JOBS_ON_HOLD("restartJobsOnHold", null, true),
+        START_JOBS("startJobs", null, true),
         SKIP_JOBS("skipJobs", null, true),
-        ADD_JOBS("addJobs", null, false);
+        ADD_JOBS("addJobs", null, false),
+        ADD_JOBS_ON_HOLD("addJobsOnHold", null, false);
 
         private final String value;
         private final ActionChecker actionChecker;

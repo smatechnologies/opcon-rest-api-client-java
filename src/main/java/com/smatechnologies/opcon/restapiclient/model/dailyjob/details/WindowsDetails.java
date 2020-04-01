@@ -3,6 +3,10 @@ package com.smatechnologies.opcon.restapiclient.model.dailyjob.details;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.smatechnologies.opcon.restapiclient.jackson.deserializer.WindowsPriorityDeserializer;
+import com.smatechnologies.opcon.restapiclient.jackson.serializer.WindowsPrioritySerializer;
 import com.smatechnologies.opcon.restapiclient.model.BatchUser;
 import com.smatechnologies.opcon.restapiclient.model.dailyjob.details.commons.AdvancedFailureCriteria;
 import com.smatechnologies.opcon.restapiclient.model.dailyjob.details.commons.BasicFailureCriteria;
@@ -80,6 +84,8 @@ public class WindowsDetails {
         this.preRunFailureCriteria = preRunFailureCriteria;
     }
 
+    @JsonSerialize(using = WindowsPrioritySerializer.class)
+    @JsonDeserialize(using = WindowsPriorityDeserializer.class)
     public Priority getJobPriority() {
         return jobPriority;
     }
@@ -230,6 +236,9 @@ public class WindowsDetails {
         REAL_TIME(3, "RealTime");
 
         public final static String RESOURCE = "priority";
+
+        public static final String PRIORITY_ID = "id";
+        public static final String PRIORITY_NAME = "name";
 
         private final int id;
         @JsonIgnore

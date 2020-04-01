@@ -14,6 +14,9 @@ import java.util.Objects;
 public class MachineGroupsCriteria extends AbstractResourcesCriteria<MachineGroupsCriteria.MachineGroupColumns> {
 
     @ObjMapperField
+    private String name;
+
+    @ObjMapperField
     private Collection<Integer> ids;
 
     @ObjMapperField
@@ -24,6 +27,14 @@ public class MachineGroupsCriteria extends AbstractResourcesCriteria<MachineGrou
 
     @ObjMapperField
     private Boolean includeMachines;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Collection<Integer> getIds() {
         return ids;

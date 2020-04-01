@@ -1,17 +1,13 @@
 package com.smatechnologies.opcon.restapiclient;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smatechnologies.opcon.commons.util.UrlUtil;
-import com.smatechnologies.opcon.restapiclient.jackson.DefaultObjectMapperProvider;
 import org.glassfish.jersey.client.ClientProperties;
 
 import javax.net.ssl.SSLContext;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.ext.ContextResolver;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Objects;
 
 
 /**
@@ -20,9 +16,6 @@ import java.util.Objects;
 public class DefaultClientBuilder {
 
     private static final String ALGORITHM_PROTOCOL = "TLS";
-
-    private Class<? extends ContextResolver<ObjectMapper>> objectMapperProviderClass = DefaultObjectMapperProvider.class;
-    private ContextResolver<ObjectMapper> objectMapperProvider;
 
     private boolean trustAllCert;
     private Integer connectTimeout;
@@ -33,20 +26,6 @@ public class DefaultClientBuilder {
 
     public static DefaultClientBuilder get() {
         return new DefaultClientBuilder();
-    }
-
-    public DefaultClientBuilder setObjectMapperProviderClass(Class<? extends ContextResolver<ObjectMapper>> objectMapperProviderClass) {
-        this.objectMapperProviderClass = Objects.requireNonNull(objectMapperProviderClass, "ObjectMapperProviderClass cannot be null");
-        objectMapperProvider = null;
-
-        return this;
-    }
-
-    public DefaultClientBuilder setObjectMapperProvider(ContextResolver<ObjectMapper> objectMapperProvider) {
-        this.objectMapperProvider = Objects.requireNonNull(objectMapperProvider, "ObjectMapperProvider cannot be null");
-        objectMapperProviderClass = null;
-
-        return this;
     }
 
     public DefaultClientBuilder setTrustAllCert(boolean trustAllCert) {
@@ -83,13 +62,6 @@ public class DefaultClientBuilder {
         }
         if (readTimeout != null) {
             client.property(ClientProperties.READ_TIMEOUT, readTimeout);
-        }
-
-        if (objectMapperProviderClass != null) {
-            client.register(objectMapperProviderClass);
-        }
-        if (objectMapperProvider != null) {
-            client.register(objectMapperProvider);
         }
 
         return client;
