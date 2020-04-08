@@ -96,12 +96,13 @@ public class SolutionManagerSettings {
                 Objects.equals(userId, that.userId) &&
                 Objects.equals(roleId, that.roleId) &&
                 Objects.equals(name, that.name) &&
-                Objects.equals(value, that.value);
+                Objects.equals(value, that.value) &&
+                Objects.equals(isPublic, that.isPublic) &&
+                Objects.equals(userCanWrite, that.userCanWrite);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(id, userId, roleId, name, value);
+        return Objects.hash(id, userId, roleId, name, value, isPublic, userCanWrite);
     }
 }
