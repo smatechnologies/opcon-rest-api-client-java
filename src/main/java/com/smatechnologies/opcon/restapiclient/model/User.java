@@ -42,6 +42,7 @@ public class User {
     public static final String PROPERTY_LAST_LOGGED_IN = "lastLoggedIn";
     public static final String PROPERTY_LAST_LOGGED_OUT = "lastLoggedOut";
     public static final String PROPERTY_IS_SELF_SERVICE_USER = "isSelfServiceUser";
+    public static final String PROPERTY_IS_USER_TOKEN_DISABLED = "isUserTokenDisabled";
 
     public static final int MAX_CHARS_PASSWORD = 12;
     public static final int MAX_CHARS_EXTERNAL_PASSWORD = 20;
@@ -68,6 +69,7 @@ public class User {
     private String lastLoggedIn;
     private String lastLoggedOut;
     private Boolean isSelfServiceUser;
+    private Boolean isUserTokenDisabled;
 
     public Integer getId() {
         return id;
@@ -219,6 +221,14 @@ public class User {
 
     public void setIsSelfServiceUser(Boolean isSelfServiceUser) {
         this.isSelfServiceUser = isSelfServiceUser;
+    }
+
+    public Boolean getIsUserTokenDisabled() {
+        return isUserTokenDisabled;
+    }
+
+    public void setIsUserTokenDisabled(Boolean userTokenDisabled) {
+        isUserTokenDisabled = userTokenDisabled;
     }
 
     @JsonIgnore
@@ -458,12 +468,12 @@ public class User {
                 Objects.equals(lastPasswordChangeDate, user.lastPasswordChangeDate) &&
                 Objects.equals(lastLoggedIn, user.lastLoggedIn) &&
                 Objects.equals(lastLoggedOut, user.lastLoggedOut) &&
-                Objects.equals(isSelfServiceUser, user.isSelfServiceUser);
+                Objects.equals(isSelfServiceUser, user.isSelfServiceUser) &&
+                Objects.equals(isUserTokenDisabled, user.isUserTokenDisabled);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(id, loginName, name, password, externalPassword, details, moreDetails, roles, language, isDisabled, forcePasswordChange, historicalPasswords, email, numberOfFailedPasswordAttempts, passwordNeverExpires, lastPasswordChangeDate, lastLoggedIn, lastLoggedOut, isSelfServiceUser);
+        return Objects.hash(id, loginName, name, password, externalPassword, details, moreDetails, roles, language, isDisabled, forcePasswordChange, historicalPasswords, email, numberOfFailedPasswordAttempts, passwordNeverExpires, lastPasswordChangeDate, lastLoggedIn, lastLoggedOut, isSelfServiceUser, isUserTokenDisabled);
     }
 }
