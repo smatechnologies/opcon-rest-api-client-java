@@ -237,8 +237,8 @@ public class User {
         return isExternalTokenDisabled;
     }
 
-    public void setIsExternalTokenDisabled(Boolean isExternalTokenDisabled) {
-        isExternalTokenDisabled = isExternalTokenDisabled;
+    public void setIsExternalTokenDisabled(Boolean externalTokenDisabled) {
+        isExternalTokenDisabled = externalTokenDisabled;
     }
 
     @JsonIgnore
