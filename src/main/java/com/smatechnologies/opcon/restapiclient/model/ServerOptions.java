@@ -16,13 +16,15 @@ public class ServerOptions {
     public static final String PROPERTY_HTML_DOCUMENTATION = "htmlDocumentation";
     public static final String PROPERTY_PASSWORD_POLICY = "passwordPolicy";
     public static final String PROPERTY_VISION_SETTINGS = "visionSettings";
-    public static final String PROPERTY_VISION_TICKETING_SYSTEM_NAME = "ticketingSystemName";
+    public static final String PROPERTY_TICKETING_SYSTEM_NAME = "ticketingSystemName";
+    public static final String PROPERTY_NUMBER_OF_DAYS_TO_KEEP_SERVICE_REQUEST_EXECUTIONS = "numberOfDaysToKeepServiceRequestExecutions";
 
     private HtmlDocumentation htmlDocumentation;
     private PasswordPolicy passwordPolicy;
     private VisionSettings visionSettings;
     private String loginSecureMessage;
     private String ticketingSystemName;
+    private Integer numberOfDaysToKeepServiceRequestExecutions;
 
     public HtmlDocumentation getHtmlDocumentation() {
         return htmlDocumentation;
@@ -64,6 +66,14 @@ public class ServerOptions {
         this.ticketingSystemName = ticketingSystemName;
     }
 
+    public Integer getNumberOfDaysToKeepServiceRequestExecutions() {
+        return numberOfDaysToKeepServiceRequestExecutions;
+    }
+
+    public void setNumberOfDaysToKeepServiceRequestExecutions(Integer numberOfDaysToKeepServiceRequestExecutions) {
+        this.numberOfDaysToKeepServiceRequestExecutions = numberOfDaysToKeepServiceRequestExecutions;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -75,12 +85,13 @@ public class ServerOptions {
                 Objects.equals(passwordPolicy, that.passwordPolicy) &&
                 Objects.equals(visionSettings, that.visionSettings) &&
                 Objects.equals(loginSecureMessage, that.loginSecureMessage) &&
-                Objects.equals(ticketingSystemName, that.ticketingSystemName);
+                Objects.equals(ticketingSystemName, that.ticketingSystemName) &&
+                Objects.equals(numberOfDaysToKeepServiceRequestExecutions, that.numberOfDaysToKeepServiceRequestExecutions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(htmlDocumentation, passwordPolicy, visionSettings, loginSecureMessage, ticketingSystemName);
+        return Objects.hash(htmlDocumentation, passwordPolicy, visionSettings, loginSecureMessage, ticketingSystemName, numberOfDaysToKeepServiceRequestExecutions);
     }
 
     public static class HtmlDocumentation {
