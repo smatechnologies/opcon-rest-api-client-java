@@ -28,6 +28,7 @@ public abstract class MasterVisionCard {
     public static final String PROPERTY_QOS_CRITICAL_THRESHOLD = "qosCriticalThreshold";
     public static final String PROPERTY_SLA_TOLERABLE_THRESHOLD = "slaTolerableThreshold";
     public static final String PROPERTY_SLA_CRITICAL_THRESHOLD = "slaCriticalThreshold";
+    public static final String PROPERTY_VERSION = "version";
 
     protected static final String PROPERTY_PARENT_MASTER_VISION_CARD = "parentMasterVisionCard";
 
@@ -44,6 +45,7 @@ public abstract class MasterVisionCard {
     private Integer qosCriticalThreshold;
     private Integer slaTolerableThreshold;
     private Integer slaCriticalThreshold;
+    private Integer version;
 
     public Integer getId() {
         return id;
@@ -133,6 +135,14 @@ public abstract class MasterVisionCard {
         this.slaCriticalThreshold = slaCriticalThreshold;
     }
 
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
     @JsonIgnore
     public abstract Type getType();
 
@@ -153,12 +163,13 @@ public abstract class MasterVisionCard {
                 Objects.equals(qosTolerableThreshold, that.qosTolerableThreshold) &&
                 Objects.equals(qosCriticalThreshold, that.qosCriticalThreshold) &&
                 Objects.equals(slaTolerableThreshold, that.slaTolerableThreshold) &&
-                Objects.equals(slaCriticalThreshold, that.slaCriticalThreshold);
+                Objects.equals(slaCriticalThreshold, that.slaCriticalThreshold) &&
+                Objects.equals(version, that.version);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, trackId, name, description, offset, associatedFrequencies, associatedRoles, qosTolerableThreshold, qosCriticalThreshold, slaTolerableThreshold, slaCriticalThreshold);
+        return Objects.hash(id, trackId, name, description, offset, associatedFrequencies, associatedRoles, qosTolerableThreshold, qosCriticalThreshold, slaTolerableThreshold, slaCriticalThreshold, version);
     }
 
     public enum Type {
