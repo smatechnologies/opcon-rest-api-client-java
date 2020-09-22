@@ -16,13 +16,15 @@ public class ServerOptions {
     public static final String PROPERTY_HTML_DOCUMENTATION = "htmlDocumentation";
     public static final String PROPERTY_PASSWORD_POLICY = "passwordPolicy";
     public static final String PROPERTY_VISION_SETTINGS = "visionSettings";
-    public static final String PROPERTY_VISION_TICKETING_SYSTEM_NAME = "ticketingSystemName";
+    public static final String PROPERTY_TICKETING_SYSTEM_NAME = "ticketingSystemName";
+    public static final String PROPERTY_NUMBER_OF_DAYS_TO_KEEP_SERVICE_REQUEST_EXECUTIONS = "numberOfDaysToKeepServiceRequestExecutions";
 
     private HtmlDocumentation htmlDocumentation;
     private PasswordPolicy passwordPolicy;
     private VisionSettings visionSettings;
     private String loginSecureMessage;
     private String ticketingSystemName;
+    private Integer numberOfDaysToKeepServiceRequestExecutions;
 
     public HtmlDocumentation getHtmlDocumentation() {
         return htmlDocumentation;
@@ -64,6 +66,14 @@ public class ServerOptions {
         this.ticketingSystemName = ticketingSystemName;
     }
 
+    public Integer getNumberOfDaysToKeepServiceRequestExecutions() {
+        return numberOfDaysToKeepServiceRequestExecutions;
+    }
+
+    public void setNumberOfDaysToKeepServiceRequestExecutions(Integer numberOfDaysToKeepServiceRequestExecutions) {
+        this.numberOfDaysToKeepServiceRequestExecutions = numberOfDaysToKeepServiceRequestExecutions;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -75,12 +85,13 @@ public class ServerOptions {
                 Objects.equals(passwordPolicy, that.passwordPolicy) &&
                 Objects.equals(visionSettings, that.visionSettings) &&
                 Objects.equals(loginSecureMessage, that.loginSecureMessage) &&
-                Objects.equals(ticketingSystemName, that.ticketingSystemName);
+                Objects.equals(ticketingSystemName, that.ticketingSystemName) &&
+                Objects.equals(numberOfDaysToKeepServiceRequestExecutions, that.numberOfDaysToKeepServiceRequestExecutions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(htmlDocumentation, passwordPolicy, visionSettings, loginSecureMessage, ticketingSystemName);
+        return Objects.hash(htmlDocumentation, passwordPolicy, visionSettings, loginSecureMessage, ticketingSystemName, numberOfDaysToKeepServiceRequestExecutions);
     }
 
     public static class HtmlDocumentation {
@@ -164,6 +175,9 @@ public class ServerOptions {
         private Integer daysBeforeExpirationToWarn;
         private Integer numberOfPasswordsToRetain;
         private Integer attemptsBeforeAccountLock;
+        private Integer minimumNumberOfLowerCaseCharacters;
+        private Integer minimumNumberOfUpperCaseCharacters;
+        private Integer minimumNumberOfDaysToChangePassword;
 
         public Integer getMinimumCharacters() {
             return minimumCharacters;
@@ -237,47 +251,54 @@ public class ServerOptions {
             this.attemptsBeforeAccountLock = attemptsBeforeAccountLock;
         }
 
+        public Integer getMinimumNumberOfLowerCaseCharacters() {
+            return minimumNumberOfLowerCaseCharacters;
+        }
+
+        public void setMinimumNumberOfLowerCaseCharacters(Integer minimumNumberOfLowerCaseCharacters) {
+            this.minimumNumberOfLowerCaseCharacters = minimumNumberOfLowerCaseCharacters;
+        }
+
+        public Integer getMinimumNumberOfUpperCaseCharacters() {
+            return minimumNumberOfUpperCaseCharacters;
+        }
+
+        public void setMinimumNumberOfUpperCaseCharacters(Integer minimumNumberOfUpperCaseCharacters) {
+            this.minimumNumberOfUpperCaseCharacters = minimumNumberOfUpperCaseCharacters;
+        }
+
+        public Integer getMinimumNumberOfDaysToChangePassword() {
+            return minimumNumberOfDaysToChangePassword;
+        }
+
+        public void setMinimumNumberOfDaysToChangePassword(Integer minimumNumberOfDaysToChangePassword) {
+            this.minimumNumberOfDaysToChangePassword = minimumNumberOfDaysToChangePassword;
+        }
+
         @Override
         public boolean equals(Object o) {
             if (this == o)
                 return true;
             if (o == null || getClass() != o.getClass())
                 return false;
-
             PasswordPolicy that = (PasswordPolicy) o;
-
-            if (minimumCharacters != null ? !minimumCharacters.equals(that.minimumCharacters) : that.minimumCharacters != null)
-                return false;
-            if (numericRequired != null ? !numericRequired.equals(that.numericRequired) : that.numericRequired != null)
-                return false;
-            if (alphaRequired != null ? !alphaRequired.equals(that.alphaRequired) : that.alphaRequired != null)
-                return false;
-            if (specialCharacterRequired != null ? !specialCharacterRequired.equals(that.specialCharacterRequired) : that.specialCharacterRequired != null)
-                return false;
-            if (repeatedCharacterOccurrencesAllowed != null ? !repeatedCharacterOccurrencesAllowed.equals(that.repeatedCharacterOccurrencesAllowed) : that.repeatedCharacterOccurrencesAllowed != null)
-                return false;
-            if (daysValid != null ? !daysValid.equals(that.daysValid) : that.daysValid != null)
-                return false;
-            if (daysBeforeExpirationToWarn != null ? !daysBeforeExpirationToWarn.equals(that.daysBeforeExpirationToWarn) : that.daysBeforeExpirationToWarn != null)
-                return false;
-            if (numberOfPasswordsToRetain != null ? !numberOfPasswordsToRetain.equals(that.numberOfPasswordsToRetain) : that.numberOfPasswordsToRetain != null)
-                return false;
-            return attemptsBeforeAccountLock != null ? attemptsBeforeAccountLock.equals(that.attemptsBeforeAccountLock) : that.attemptsBeforeAccountLock == null;
-
+            return Objects.equals(minimumCharacters, that.minimumCharacters) &&
+                    Objects.equals(numericRequired, that.numericRequired) &&
+                    Objects.equals(alphaRequired, that.alphaRequired) &&
+                    Objects.equals(specialCharacterRequired, that.specialCharacterRequired) &&
+                    Objects.equals(repeatedCharacterOccurrencesAllowed, that.repeatedCharacterOccurrencesAllowed) &&
+                    Objects.equals(daysValid, that.daysValid) &&
+                    Objects.equals(daysBeforeExpirationToWarn, that.daysBeforeExpirationToWarn) &&
+                    Objects.equals(numberOfPasswordsToRetain, that.numberOfPasswordsToRetain) &&
+                    Objects.equals(attemptsBeforeAccountLock, that.attemptsBeforeAccountLock) &&
+                    Objects.equals(minimumNumberOfLowerCaseCharacters, that.minimumNumberOfLowerCaseCharacters) &&
+                    Objects.equals(minimumNumberOfUpperCaseCharacters, that.minimumNumberOfUpperCaseCharacters) &&
+                    Objects.equals(minimumNumberOfDaysToChangePassword, that.minimumNumberOfDaysToChangePassword);
         }
 
         @Override
         public int hashCode() {
-            int result = minimumCharacters != null ? minimumCharacters.hashCode() : 0;
-            result = 31 * result + (numericRequired != null ? numericRequired.hashCode() : 0);
-            result = 31 * result + (alphaRequired != null ? alphaRequired.hashCode() : 0);
-            result = 31 * result + (specialCharacterRequired != null ? specialCharacterRequired.hashCode() : 0);
-            result = 31 * result + (repeatedCharacterOccurrencesAllowed != null ? repeatedCharacterOccurrencesAllowed.hashCode() : 0);
-            result = 31 * result + (daysValid != null ? daysValid.hashCode() : 0);
-            result = 31 * result + (daysBeforeExpirationToWarn != null ? daysBeforeExpirationToWarn.hashCode() : 0);
-            result = 31 * result + (numberOfPasswordsToRetain != null ? numberOfPasswordsToRetain.hashCode() : 0);
-            result = 31 * result + (attemptsBeforeAccountLock != null ? attemptsBeforeAccountLock.hashCode() : 0);
-            return result;
+            return Objects.hash(minimumCharacters, numericRequired, alphaRequired, specialCharacterRequired, repeatedCharacterOccurrencesAllowed, daysValid, daysBeforeExpirationToWarn, numberOfPasswordsToRetain, attemptsBeforeAccountLock, minimumNumberOfLowerCaseCharacters, minimumNumberOfUpperCaseCharacters, minimumNumberOfDaysToChangePassword);
         }
     }
 
