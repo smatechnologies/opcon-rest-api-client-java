@@ -42,6 +42,7 @@ public class User {
     public static final String PROPERTY_LAST_LOGGED_IN = "lastLoggedIn";
     public static final String PROPERTY_LAST_LOGGED_OUT = "lastLoggedOut";
     public static final String PROPERTY_IS_SELF_SERVICE_USER = "isSelfServiceUser";
+    public static final String PROPERTY_IS_EXTERNAL_TOKEN_DISABLED = "isExternalTokenDisabled";
 
     public static final int MAX_CHARS_PASSWORD = 12;
     public static final int MAX_CHARS_EXTERNAL_PASSWORD = 20;
@@ -68,6 +69,7 @@ public class User {
     private String lastLoggedIn;
     private String lastLoggedOut;
     private Boolean isSelfServiceUser;
+    private Boolean isExternalTokenDisabled;
 
     public Integer getId() {
         return id;
@@ -221,7 +223,15 @@ public class User {
         this.isSelfServiceUser = isSelfServiceUser;
     }
 
-    @JsonIgnore
+    public Boolean getIsExternalTokenDisabled() {
+		return isExternalTokenDisabled;
+	}
+
+	public void setIsExternalTokenDisabled(Boolean isExternalTokenDisabled) {
+		this.isExternalTokenDisabled = isExternalTokenDisabled;
+	}
+
+	@JsonIgnore
     public boolean isOCADMUser() {
         return id == User.OCADM_ID;
     }
