@@ -18,6 +18,7 @@ public class SolutionManagerSettings {
     public static final String PROPERTY_NAME = "name";
     public static final String PROPERTY_VALUE = "value";
     public static final String PROPERTY_PUBLIC = "public";
+    public static final String PROPERTY_USER_CAN_WRITE = "userCanWrite";
 
     private Integer id;
     private Integer userId;
@@ -26,6 +27,7 @@ public class SolutionManagerSettings {
     private String value;
     @JsonProperty("public")
     private Boolean isPublic;
+    private Boolean userCanWrite;
 
     public Integer getId() {
         return id;
@@ -75,6 +77,14 @@ public class SolutionManagerSettings {
         this.isPublic = isPublic;
     }
 
+    public Boolean getUserCanWrite() {
+        return userCanWrite;
+    }
+
+    public void setUserCanWrite(Boolean userCanWrite) {
+        this.userCanWrite = userCanWrite;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -86,12 +96,13 @@ public class SolutionManagerSettings {
                 Objects.equals(userId, that.userId) &&
                 Objects.equals(roleId, that.roleId) &&
                 Objects.equals(name, that.name) &&
-                Objects.equals(value, that.value);
+                Objects.equals(value, that.value) &&
+                Objects.equals(isPublic, that.isPublic) &&
+                Objects.equals(userCanWrite, that.userCanWrite);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(id, userId, roleId, name, value);
+        return Objects.hash(id, userId, roleId, name, value, isPublic, userCanWrite);
     }
 }

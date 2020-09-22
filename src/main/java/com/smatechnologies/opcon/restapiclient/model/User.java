@@ -42,6 +42,8 @@ public class User {
     public static final String PROPERTY_LAST_LOGGED_IN = "lastLoggedIn";
     public static final String PROPERTY_LAST_LOGGED_OUT = "lastLoggedOut";
     public static final String PROPERTY_IS_SELF_SERVICE_USER = "isSelfServiceUser";
+    public static final String PROPERTY_IS_USER_TOKEN_DISABLED = "isUserTokenDisabled";
+    public static final String PROPERTY_IS_EXTERNAL_TOKEN_DISABLED = "isExternalTokenDisabled";
 
     public static final int MAX_CHARS_PASSWORD = 12;
     public static final int MAX_CHARS_EXTERNAL_PASSWORD = 20;
@@ -68,6 +70,8 @@ public class User {
     private String lastLoggedIn;
     private String lastLoggedOut;
     private Boolean isSelfServiceUser;
+    private Boolean isUserTokenDisabled;
+    private Boolean isExternalTokenDisabled;
 
     public Integer getId() {
         return id;
@@ -221,9 +225,64 @@ public class User {
         this.isSelfServiceUser = isSelfServiceUser;
     }
 
+<<<<<<< HEAD
 	@JsonIgnore
+=======
+    public Boolean getIsUserTokenDisabled() {
+        return isUserTokenDisabled;
+    }
+
+    public void setIsUserTokenDisabled(Boolean userTokenDisabled) {
+        isUserTokenDisabled = userTokenDisabled;
+    }
+
+    public Boolean getIsExternalTokenDisabled() {
+        return isExternalTokenDisabled;
+    }
+
+    public void setIsExternalTokenDisabled(Boolean externalTokenDisabled) {
+        isExternalTokenDisabled = externalTokenDisabled;
+    }
+
+    @JsonIgnore
+>>>>>>> e97de5edc1ad50cd80169e331c0bbeea8e6d73ee
     public boolean isOCADMUser() {
         return id == User.OCADM_ID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(loginName, user.loginName) &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(externalPassword, user.externalPassword) &&
+                Objects.equals(details, user.details) &&
+                Objects.equals(moreDetails, user.moreDetails) &&
+                Objects.equals(roles, user.roles) &&
+                Objects.equals(language, user.language) &&
+                Objects.equals(isDisabled, user.isDisabled) &&
+                Objects.equals(forcePasswordChange, user.forcePasswordChange) &&
+                Objects.equals(historicalPasswords, user.historicalPasswords) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(numberOfFailedPasswordAttempts, user.numberOfFailedPasswordAttempts) &&
+                Objects.equals(passwordNeverExpires, user.passwordNeverExpires) &&
+                Objects.equals(lastPasswordChangeDate, user.lastPasswordChangeDate) &&
+                Objects.equals(lastLoggedIn, user.lastLoggedIn) &&
+                Objects.equals(lastLoggedOut, user.lastLoggedOut) &&
+                Objects.equals(isSelfServiceUser, user.isSelfServiceUser) &&
+                Objects.equals(isUserTokenDisabled, user.isUserTokenDisabled) &&
+                Objects.equals(isExternalTokenDisabled, user.isExternalTokenDisabled);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, loginName, name, password, externalPassword, details, moreDetails, roles, language, isDisabled, forcePasswordChange, historicalPasswords, email, numberOfFailedPasswordAttempts, passwordNeverExpires, lastPasswordChangeDate, lastLoggedIn, lastLoggedOut, isSelfServiceUser, isUserTokenDisabled, isExternalTokenDisabled);
     }
 
     @JsonIgnore
@@ -433,37 +492,4 @@ public class User {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) &&
-                Objects.equals(loginName, user.loginName) &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(externalPassword, user.externalPassword) &&
-                Objects.equals(details, user.details) &&
-                Objects.equals(moreDetails, user.moreDetails) &&
-                Objects.equals(roles, user.roles) &&
-                Objects.equals(language, user.language) &&
-                Objects.equals(isDisabled, user.isDisabled) &&
-                Objects.equals(forcePasswordChange, user.forcePasswordChange) &&
-                Objects.equals(historicalPasswords, user.historicalPasswords) &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(numberOfFailedPasswordAttempts, user.numberOfFailedPasswordAttempts) &&
-                Objects.equals(passwordNeverExpires, user.passwordNeverExpires) &&
-                Objects.equals(lastPasswordChangeDate, user.lastPasswordChangeDate) &&
-                Objects.equals(lastLoggedIn, user.lastLoggedIn) &&
-                Objects.equals(lastLoggedOut, user.lastLoggedOut) &&
-                Objects.equals(isSelfServiceUser, user.isSelfServiceUser);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(id, loginName, name, password, externalPassword, details, moreDetails, roles, language, isDisabled, forcePasswordChange, historicalPasswords, email, numberOfFailedPasswordAttempts, passwordNeverExpires, lastPasswordChangeDate, lastLoggedIn, lastLoggedOut, isSelfServiceUser);
-    }
 }

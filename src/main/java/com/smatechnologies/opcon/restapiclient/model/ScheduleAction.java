@@ -279,6 +279,7 @@ public class ScheduleAction {
             public static final String RESOURCE = "job";
 
             public static final String PROPERTY_ID = "id";
+            public static final String PROPERTY_UID = "uid";
             public static final String PROPERTY_FREQUENCY = "frequency";
             public static final String PROPERTY_RESULT = "result";
             public static final String PROPERTY_MESSAGE = "message";
@@ -287,6 +288,7 @@ public class ScheduleAction {
             public static final String PROPERTY_APPLY_EXCEPTIONS = "applyExceptions";
 
             private String id;
+            private Integer uid;
             private String frequency;
             private String result;
             private String message;
@@ -300,6 +302,14 @@ public class ScheduleAction {
 
             public void setId(String id) {
                 this.id = id;
+            }
+
+            public Integer getUid() {
+                return uid;
+            }
+
+            public void setUid(Integer uid) {
+                this.uid = uid;
             }
 
             public String getFrequency() {
@@ -358,6 +368,7 @@ public class ScheduleAction {
                     return false;
                 Job job = (Job) o;
                 return Objects.equals(id, job.id) &&
+                        Objects.equals(uid, job.uid) &&
                         Objects.equals(frequency, job.frequency) &&
                         Objects.equals(result, job.result) &&
                         Objects.equals(message, job.message) &&
@@ -368,7 +379,7 @@ public class ScheduleAction {
 
             @Override
             public int hashCode() {
-                return Objects.hash(id, frequency, result, message, rebuildOnRestartIfContainer, instanceProperties, applyExceptions);
+                return Objects.hash(id, uid, frequency, result, message, rebuildOnRestartIfContainer, instanceProperties, applyExceptions);
             }
 
             public static class InstanceProperty {
