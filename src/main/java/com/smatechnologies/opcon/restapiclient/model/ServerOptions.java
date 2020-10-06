@@ -25,6 +25,7 @@ public class ServerOptions {
     private String loginSecureMessage;
     private String ticketingSystemName;
     private Integer numberOfDaysToKeepServiceRequestExecutions;
+    private Boolean enableWindowsAuthentication;
 
     public HtmlDocumentation getHtmlDocumentation() {
         return htmlDocumentation;
@@ -74,6 +75,14 @@ public class ServerOptions {
         this.numberOfDaysToKeepServiceRequestExecutions = numberOfDaysToKeepServiceRequestExecutions;
     }
 
+    public Boolean getEnableWindowsAuthentication() {
+        return enableWindowsAuthentication;
+    }
+
+    public void setEnableWindowsAuthentication(Boolean enableWindowsAuthentication) {
+        this.enableWindowsAuthentication = enableWindowsAuthentication;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -86,12 +95,13 @@ public class ServerOptions {
                 Objects.equals(visionSettings, that.visionSettings) &&
                 Objects.equals(loginSecureMessage, that.loginSecureMessage) &&
                 Objects.equals(ticketingSystemName, that.ticketingSystemName) &&
-                Objects.equals(numberOfDaysToKeepServiceRequestExecutions, that.numberOfDaysToKeepServiceRequestExecutions);
+                Objects.equals(numberOfDaysToKeepServiceRequestExecutions, that.numberOfDaysToKeepServiceRequestExecutions) &&
+                Objects.equals(enableWindowsAuthentication, that.enableWindowsAuthentication);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(htmlDocumentation, passwordPolicy, visionSettings, loginSecureMessage, ticketingSystemName, numberOfDaysToKeepServiceRequestExecutions);
+        return Objects.hash(htmlDocumentation, passwordPolicy, visionSettings, loginSecureMessage, ticketingSystemName, numberOfDaysToKeepServiceRequestExecutions, enableWindowsAuthentication);
     }
 
     public static class HtmlDocumentation {
