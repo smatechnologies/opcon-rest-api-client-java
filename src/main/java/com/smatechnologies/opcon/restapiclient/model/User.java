@@ -225,9 +225,6 @@ public class User {
         this.isSelfServiceUser = isSelfServiceUser;
     }
 
-<<<<<<< HEAD
-	@JsonIgnore
-=======
     public Boolean getIsUserTokenDisabled() {
         return isUserTokenDisabled;
     }
@@ -245,7 +242,6 @@ public class User {
     }
 
     @JsonIgnore
->>>>>>> e97de5edc1ad50cd80169e331c0bbeea8e6d73ee
     public boolean isOCADMUser() {
         return id == User.OCADM_ID;
     }
