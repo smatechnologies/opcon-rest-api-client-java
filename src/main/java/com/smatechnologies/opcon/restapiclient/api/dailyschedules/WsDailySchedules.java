@@ -5,6 +5,7 @@ import com.smatechnologies.opcon.restapiclient.WsException;
 import com.smatechnologies.opcon.restapiclient.WsFactory;
 import com.smatechnologies.opcon.restapiclient.WsResult;
 import com.smatechnologies.opcon.restapiclient.api.dailyschedules.dates.WsDates;
+import com.smatechnologies.opcon.restapiclient.api.dailyschedules.properties.WsDailySchedulesProperties;
 import com.smatechnologies.opcon.restapiclient.model.DailySchedule;
 import com.smatechnologies.opcon.restapiclient.model.ScheduleDailyStatusCount;
 
@@ -59,4 +60,9 @@ public class WsDailySchedules {
     public ScheduleDailyStatusCount countByStatus(DailySchedulesCriteria criteria) throws WsException {
         return wsFactory.create(Ws.Type.GET).path("count_by_status").criteria(criteria).run(ScheduleDailyStatusCount.class);
     }
+    
+    public WsDailySchedulesProperties properties(String dailyScheduleId) {
+        return new WsDailySchedulesProperties(wsFactory.path(dailyScheduleId));
+    }
+
 }
