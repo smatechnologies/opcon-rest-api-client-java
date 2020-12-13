@@ -5,6 +5,8 @@ import com.smatechnologies.opcon.restapiclient.Ws;
 import com.smatechnologies.opcon.restapiclient.WsException;
 import com.smatechnologies.opcon.restapiclient.WsFactory;
 import com.smatechnologies.opcon.restapiclient.WsResult;
+import com.smatechnologies.opcon.restapiclient.api.dailyjobs.incidentTickets.WsDailyJobsIncidentTickets;
+import com.smatechnologies.opcon.restapiclient.api.dailyschedules.properties.WsDailySchedulesProperties;
 import com.smatechnologies.opcon.restapiclient.model.JobDailyStatusCount;
 import com.smatechnologies.opcon.restapiclient.model.dailyjob.DailyJob;
 
@@ -62,4 +64,10 @@ public class WsDailyJobs {
 
         return wsFactory.create(Ws.Type.PUT, dailyJob).path(id).run(DailyJob.class);
     }
+    
+    public WsDailyJobsIncidentTickets incidentTickets(String dailyJobUid) {
+        return new WsDailyJobsIncidentTickets(wsFactory.path(dailyJobUid));
+    }
+
+    
 }
