@@ -5,8 +5,8 @@ public class IncidentTicketDetails {
 	   public static final String RESOURCE = "incidentTickets";
 
 	    public static final String PROPERTY_ID = "id";
-	    public static final String TICKET_ID = "ticketId";
-	    public static final String TICKET_URL = "ticketUrl";
+	    public static final String PROPERTY_TICKET_ID = "ticketId";
+	    public static final String PROPERTY_TICKET_URL = "ticketUrl";
 
 	    private String id;
 	    private String ticketId;
