@@ -12,7 +12,6 @@ import javax.ws.rs.core.GenericType;
 
 public class WsDailyJobsIncidentTickets {
 
-		
     private final WsFactory wsFactory;
 
     public WsDailyJobsIncidentTickets(WsFactory wsFactory) {
@@ -21,7 +20,6 @@ public class WsDailyJobsIncidentTickets {
 
     public List<IncidentTicketDetails> get() throws WsException {
         return wsFactory.create(Ws.Type.GET).run(new GenericType<List<IncidentTicketDetails>>() {
-
         });
     }
 
@@ -31,6 +29,5 @@ public class WsDailyJobsIncidentTickets {
 
         return wsFactory.create(Ws.Type.PUT, incidentTicketDetails).path(id).run(IncidentTicketDetails.class);
     }
- 
 
 }
