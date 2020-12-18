@@ -6,7 +6,7 @@ import java.util.Objects;
 import com.smatechnologies.opcon.restapiclient.Ws;
 import com.smatechnologies.opcon.restapiclient.WsException;
 import com.smatechnologies.opcon.restapiclient.WsFactory;
-import com.smatechnologies.opcon.restapiclient.model.dailyjob.details.IncidentTicketDetails;
+import com.smatechnologies.opcon.restapiclient.model.dailyjob.IncidentTicketDailyJob;
 
 import javax.ws.rs.core.GenericType;
 
@@ -18,16 +18,16 @@ public class WsDailyJobsIncidentTickets {
         this.wsFactory = wsFactory.path("incidentTickets");
     }
 
-    public List<IncidentTicketDetails> get() throws WsException {
-        return wsFactory.create(Ws.Type.GET).run(new GenericType<List<IncidentTicketDetails>>() {
+    public List<IncidentTicketDailyJob> get() throws WsException {
+        return wsFactory.create(Ws.Type.GET).run(new GenericType<List<IncidentTicketDailyJob>>() {
         });
     }
 
-    public IncidentTicketDetails put(IncidentTicketDetails incidentTicketDetails) throws WsException {
-        Objects.requireNonNull(incidentTicketDetails, "IncidentTicketDetails cannot be null");
-        String id = Objects.requireNonNull(incidentTicketDetails.getId(), "Id cannot be null");
+    public IncidentTicketDailyJob put(IncidentTicketDailyJob incidentTicketDailyJob) throws WsException {
+        Objects.requireNonNull(incidentTicketDailyJob, "IncidentTicketDailyJob cannot be null");
+        String id = Objects.requireNonNull(incidentTicketDailyJob.getId(), "Id cannot be null");
 
-        return wsFactory.create(Ws.Type.PUT, incidentTicketDetails).path(id).run(IncidentTicketDetails.class);
+        return wsFactory.create(Ws.Type.PUT, incidentTicketDailyJob).path(id).run(IncidentTicketDailyJob.class);
     }
 
 }

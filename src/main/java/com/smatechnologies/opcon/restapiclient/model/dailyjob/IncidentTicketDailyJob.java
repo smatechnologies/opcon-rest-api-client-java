@@ -1,8 +1,8 @@
-package com.smatechnologies.opcon.restapiclient.model.dailyjob.details;
+package com.smatechnologies.opcon.restapiclient.model.dailyjob;
 
 import java.util.Objects;
 
-public class IncidentTicketDetails {
+public class IncidentTicketDailyJob {
 	
 	    public static final String RESOURCE = "incidentTickets";
 
@@ -44,7 +44,7 @@ public class IncidentTicketDetails {
 	            return true;
 	        if (o == null || getClass() != o.getClass())
 	            return false;
-	        IncidentTicketDetails that = (IncidentTicketDetails) o;
+	        IncidentTicketDailyJob that = (IncidentTicketDailyJob) o;
 	        return Objects.equals(id, that.id) &&
 	                Objects.equals(ticketId, that.ticketId) &&
 	                Objects.equals(ticketUrl, that.ticketUrl);

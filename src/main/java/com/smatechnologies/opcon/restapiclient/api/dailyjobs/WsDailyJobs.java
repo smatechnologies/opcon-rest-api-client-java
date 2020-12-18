@@ -69,5 +69,4 @@ public class WsDailyJobs {
         return new WsDailyJobsIncidentTickets(wsFactory.path(dailyJobUid));
     }
 
-    
 }
