@@ -30,4 +30,10 @@ public class WsDailyJobsIncidentTickets {
         return wsFactory.create(Ws.Type.PUT, incidentTicketDailyJob).path(id).run(IncidentTicketDailyJob.class);
     }
 
+    public IncidentTicketDailyJob post(IncidentTicketDailyJob incidentTicketDailyJob) throws WsException {
+        Objects.requireNonNull(incidentTicketDailyJob, "IncidentTicketDailyJob cannot be null");
+
+        return wsFactory.create(Ws.Type.POST, incidentTicketDailyJob).run(IncidentTicketDailyJob.class);
+    }
+
 }
