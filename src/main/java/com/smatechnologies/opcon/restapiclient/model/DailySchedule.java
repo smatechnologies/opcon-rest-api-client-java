@@ -21,6 +21,7 @@ public class DailySchedule {
     public static final String PROPERTY_COMPUTED_START_TIME = "computedStartTime";
     public static final String PROPERTY_END_TIME = "endTime";
     public static final String PROPERTY_DURATION = "duration";
+    public static final String PROPERTY_WORKWEEK = "workWeek";
 
     private String id;
     private Integer uid;
@@ -34,6 +35,7 @@ public class DailySchedule {
     private ComputedTime computedStartTime;
     private ZonedDateTime endTime;
     private Long duration;
+    private Integer workWeek;
 
     public String getId() {
         return id;
@@ -131,6 +133,14 @@ public class DailySchedule {
         this.duration = duration;
     }
 
+    public Integer getWorkWeek() {
+        return workWeek;
+    }
+
+    public void setWorkWeek(Integer workWeek) {
+        this.workWeek = workWeek;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -149,11 +159,12 @@ public class DailySchedule {
                 Objects.equals(definedStartTime, that.definedStartTime) &&
                 Objects.equals(computedStartTime, that.computedStartTime) &&
                 Objects.equals(endTime, that.endTime) &&
-                Objects.equals(duration, that.duration);
+                Objects.equals(duration, that.duration) &&
+                Objects.equals(workWeek, that.workWeek);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, uid, date, masterId, instance, name, path, status, definedStartTime, computedStartTime, endTime, duration);
+        return Objects.hash(id, uid, date, masterId, instance, name, path, status, definedStartTime, computedStartTime, endTime, duration, workWeek);
     }
 }
