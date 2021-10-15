@@ -21,7 +21,7 @@ public class DailySchedule {
     public static final String PROPERTY_COMPUTED_START_TIME = "computedStartTime";
     public static final String PROPERTY_END_TIME = "endTime";
     public static final String PROPERTY_DURATION = "duration";
-    public static final String WORKWEEK_PATH = "workWeek";
+    public static final String PROPERTY_WORKWEEK = "workWeek";
 
     private String id;
     private Integer uid;
@@ -133,7 +133,6 @@ public class DailySchedule {
         this.duration = duration;
     }
 
-    
     public Integer getWorkWeek() {
         return workWeek;
     }
@@ -142,7 +141,6 @@ public class DailySchedule {
         this.workWeek = workWeek;
     }
 
-	@Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
