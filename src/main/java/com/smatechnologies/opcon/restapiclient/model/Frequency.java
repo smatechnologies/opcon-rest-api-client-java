@@ -15,13 +15,26 @@ public class Frequency {
     public static final String RESOURCE = "frequency";
 
     public static final String PROPERTY_NAME = "name";
+    public static final String PROPERTY_IN_USE = "inUse"; 
+    public static final String PROPERTY_AOBN = "aobn"; 
+    public static final String PROPERTY_FREQUENCY_PRIORITY = "frequencyPriority"; 
     public static final String PROPERTY_JOB_EXECUTION = "jobExecution";
     public static final String PROPERTY_FINISH_OK_BEHAVIOR = "finishOkBehavior";
     public static final String PROPERTY_START_TIME_ESTIMATION = "startTimeEstimation";
     public static final String PROPERTY_RETRY_BEHAVIOR = "retryBehavior";
     public static final String PROPERTY_JOB_TIMES_ESTIMATION = "jobTimesEstimation";
 
+    /*
+     * "inUse": 0,
+"aobn": "Unknown",
+"name": "SMASun-SatO7",
+"frequencyPriority": 0,
+     */
+    
     private String name;
+    private Integer inUse;
+    private Integer aobn;
+    private Integer frequencyPriority;
     private JobExecution jobExecution;
     private FinishOkBehavior finishOkBehavior;
     private StartTimeEstimation startTimeEstimation;
@@ -36,7 +49,31 @@ public class Frequency {
         this.name = name;
     }
 
-    public JobExecution getJobExecution() {
+    public Integer getInUse() {
+		return inUse;
+	}
+
+	public void setInUse(Integer inUse) {
+		this.inUse = inUse;
+	}
+
+	public Integer getAobn() {
+		return aobn;
+	}
+
+	public void setAobn(Integer aobn) {
+		this.aobn = aobn;
+	}
+
+	public Integer getFrequencyPriority() {
+		return frequencyPriority;
+	}
+
+	public void setFrequencyPriority(Integer frequencyPriority) {
+		this.frequencyPriority = frequencyPriority;
+	}
+
+	public JobExecution getJobExecution() {
         return jobExecution;
     }
 
