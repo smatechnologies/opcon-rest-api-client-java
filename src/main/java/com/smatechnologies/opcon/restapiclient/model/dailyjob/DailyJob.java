@@ -11,7 +11,8 @@ import com.smatechnologies.opcon.restapiclient.model.ComputedEndTime;
 import com.smatechnologies.opcon.restapiclient.model.ComputedStartTime;
 import com.smatechnologies.opcon.restapiclient.model.DailySchedule;
 import com.smatechnologies.opcon.restapiclient.model.Department;
-import com.smatechnologies.opcon.restapiclient.model.EventTrigger;
+import com.smatechnologies.opcon.restapiclient.model.Dependency;
+import com.smatechnologies.opcon.restapiclient.model.Event;
 import com.smatechnologies.opcon.restapiclient.model.Frequency;
 import com.smatechnologies.opcon.restapiclient.model.JobStatus;
 import com.smatechnologies.opcon.restapiclient.model.JobType;
@@ -74,6 +75,7 @@ public abstract class DailyJob {
     public static final String PROPERTY_THRESHOLD_DEPENDENCIES = "thresholdDependencies";
     public static final String PROPERTY_RESOURCE_UPDATES = "resourceUpdates";
     public static final String PROPERTY_THRESHOLD_UPDATES = "thresholdUpdates";
+    public static final String PROPERTY_DEPENDENCIES = "dependencies";
     public static final String PROPERTY_EXPRESSION_DEPENDENCIES = "expressionDependencies";
     public static final String PROPERTY_EVENTS_TRIGGERS = "eventTriggers";
     public static final String PROPERTY_FEEDBACK = "feedback";
@@ -113,8 +115,9 @@ public abstract class DailyJob {
     private List<ThresholdDependency> thresholdDependencies;
     private List<ResourceUpdate> resourceUpdates;
     private List<ThresholdUpdate> thresholdUpdates;
+    private List<Dependency> dependencies;
     private ExpressionDependencies expressionDependencies;
-    private List<EventTrigger> eventTriggers;
+    private List<Event> events;
     private Feedback feedback;
     private List<String> tags;
     private List<Property> properties;
@@ -404,7 +407,15 @@ public abstract class DailyJob {
         this.thresholdUpdates = thresholdUpdates;
     }
 
-    public ExpressionDependencies getExpressionDependencies() {
+    public List<Dependency> getDependencies() {
+		return dependencies;
+	}
+
+	public void setDependencies(List<Dependency> dependencies) {
+		this.dependencies = dependencies;
+	}
+
+	public ExpressionDependencies getExpressionDependencies() {
         return expressionDependencies;
     }
 
@@ -412,12 +423,12 @@ public abstract class DailyJob {
         this.expressionDependencies = expressionDependencies;
     }
 
-    public List<EventTrigger> getEventTriggers() {
-        return eventTriggers;
+    public List<Event> getEvents() {
+        return events;
     }
 
-    public void setEventTriggers(List<EventTrigger> eventTriggers) {
-        this.eventTriggers = eventTriggers;
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 
     public Feedback getFeedback() {
@@ -514,7 +525,7 @@ public abstract class DailyJob {
                 Objects.equals(resourceUpdates, dailyJob.resourceUpdates) &&
                 Objects.equals(thresholdUpdates, dailyJob.thresholdUpdates) &&
                 Objects.equals(expressionDependencies, dailyJob.expressionDependencies) &&
-                Objects.equals(eventTriggers, dailyJob.eventTriggers) &&
+                Objects.equals(events, dailyJob.events) &&
                 Objects.equals(feedback, dailyJob.feedback) &&
                 Objects.equals(tags, dailyJob.tags) &&
                 Objects.equals(properties, dailyJob.properties) &&
@@ -526,7 +537,7 @@ public abstract class DailyJob {
     @Override
     public int hashCode() {
         return Objects
-                .hash(id, uid, schedule, name, frequency, priority, jobType, department, accessCode, startMachine, primaryMachine, alternateMachine, alternateMachine2, alternateMachine3, machineGroup, status, terminationDescription, computedStartTime, computedEndTime, computedDuration, jobNumber, incidentTicketId, incidentTicketURL, jorsRequestParameters, steps, documentation, resourceDependencies, thresholdDependencies, resourceUpdates, thresholdUpdates, expressionDependencies, eventTriggers, feedback,
+                .hash(id, uid, schedule, name, frequency, priority, jobType, department, accessCode, startMachine, primaryMachine, alternateMachine, alternateMachine2, alternateMachine3, machineGroup, status, terminationDescription, computedStartTime, computedEndTime, computedDuration, jobNumber, incidentTicketId, incidentTicketURL, jorsRequestParameters, steps, documentation, resourceDependencies, thresholdDependencies, resourceUpdates, thresholdUpdates, expressionDependencies, events, feedback,
                         tags,
                         properties, isRecurrent, detailMessages, uniqueJobId);
     }

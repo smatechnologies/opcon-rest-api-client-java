@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * @author Matthieu COELHO
  */
-public class EventTrigger {
+public class Event {
 
     public static final String RESOURCE = "eventTrigger";
 
@@ -138,9 +138,9 @@ public class EventTrigger {
     public boolean equals(Object o) {
         if (this == o)
             return true;
-        if (!(o instanceof EventTrigger))
+        if (!(o instanceof Event))
             return false;
-        EventTrigger that = (EventTrigger) o;
+        Event that = (Event) o;
         return Objects.equals(getId(), that.getId()) &&
                 getType() == that.getType() &&
                 getStatus() == that.getStatus() &&

@@ -17,7 +17,7 @@ public class WsMasterJobs {
     private final WsFactory wsFactory;
 
     public WsMasterJobs(WsFactory wsFactory) {
-        this.wsFactory = wsFactory.path("masterjobs");
+        this.wsFactory = wsFactory.path("MasterJobs/v2");
     }
 
     public List<MasterJob> get(MasterJobsCriteria masterJobsCriteria) throws WsException {

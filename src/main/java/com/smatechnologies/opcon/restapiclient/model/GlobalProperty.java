@@ -8,13 +8,23 @@ public class GlobalProperty {
     public static final String PROPERTY_NAME = "name";
     public static final String PROPERTY_VALUE = "value";
     public static final String PROPERTY_DESCRIPTION = "description";
+    public static final String PROPERTY_DOCUMENTATION = "documentation";
     public static final String PROPERTY_ENCRYPTED = "encrypted";
+    public static final String PROPERTY_FULLNAME = "fullName";
+    public static final String PROPERTY_CATEGORY = "category";
+    public static final String PROPERTY_ISPATTERNVALUE = "isPatternValue";
+    public static final String PROPERTY_TYPE = "type";
 
     private Integer id;
     private String name;
     private String value;
     private String description;
+    private String documentation;
     private Boolean encrypted;
+    private String fullName;
+    private String category;
+    private Boolean isPatternValue;
+    private String type;
 
     public Integer getId() {
         return id;
@@ -48,6 +58,14 @@ public class GlobalProperty {
         this.description = description;
     }
 
+    public String getDocumentation() {
+        return documentation;
+    }
+
+    public void setDocumentation(String documentation) {
+        this.documentation = documentation;
+    }
+
     public Boolean getEncrypted() {
         return encrypted;
     }
@@ -55,8 +73,40 @@ public class GlobalProperty {
     public void setEncrypted(Boolean encrypted) {
         this.encrypted = encrypted;
     }
+    
+    public String getFullName() {
+		return fullName;
+	}
 
-    @Override
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public Boolean getIsPatternValue() {
+		return isPatternValue;
+	}
+
+	public void setIsPatternValue(Boolean isPatternValue) {
+		this.isPatternValue = isPatternValue;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -73,7 +123,15 @@ public class GlobalProperty {
             return false;
         if (getEncrypted() != null ? !getEncrypted().equals(that.getEncrypted()) : that.getEncrypted() != null)
             return false;
-        return getDescription() != null ? getDescription().equals(that.getDescription()) : that.getDescription() == null;
+        if (getFullName() != null ? !getFullName().equals(that.getFullName()) : that.getFullName() != null)
+            return false;
+        if (getCategory() != null ? !getCategory().equals(that.getCategory()) : that.getCategory() != null)
+            return false;
+        if (getIsPatternValue() != null ? !getIsPatternValue().equals(that.getIsPatternValue()) : that.getIsPatternValue() != null)
+            return false;
+        if (getType() != null ? !getType().equals(that.getType()) : that.getType() != null)
+            return false;
+        return getDocumentation() != null ? getDocumentation().equals(that.getDocumentation()) : that.getDocumentation() == null;
     }
 
     @Override
@@ -82,7 +140,11 @@ public class GlobalProperty {
         result = 31 * result + (getName() != null ? getName().hashCode() : 0);
         result = 31 * result + (getValue() != null ? getValue().hashCode() : 0);
         result = 31 * result + (getEncrypted() != null ? getEncrypted().hashCode() : 0);
-        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
+        result = 31 * result + (getDocumentation() != null ? getDocumentation().hashCode() : 0);
+        result = 31 * result + (getFullName() != null ? getFullName().hashCode() : 0);
+        result = 31 * result + (getCategory() != null ? getCategory().hashCode() : 0);
+        result = 31 * result + (getIsPatternValue() != null ? getIsPatternValue().hashCode() : 0);
+        result = 31 * result + (getType() != null ? getType().hashCode() : 0);
         return result;
     }
 }
